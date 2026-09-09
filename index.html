@@ -335,7 +335,19 @@ src="https://www.facebook.com/tr?id=4533885493515665&ev=PageView&noscript=1"
       document.getElementById("secs").textContent = String(s).padStart(2,"0");
       badge.textContent = "PRE-SAVE NOW";
     }
+const previewAudio = document.querySelector('audio');
+let previewTracked = false;
 
+if (previewAudio) {
+  previewAudio.addEventListener('play', function () {
+    if (!previewTracked) {
+      fbq('trackCustom', 'PreviewPlay', {
+        content_name: 'Una Vida'
+      });
+      previewTracked = true;
+    }
+  });
+}
     updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
